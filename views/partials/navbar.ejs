@@ -1,0 +1,142 @@
+<nav class="th-nav-st1">
+  <div class="container">
+    <!-- nav content -->
+    <div class="nav-content d-flex align-items-center justify-content-between">
+      <!-- brand -->
+      <a href="/" class="brand">
+        <img src="/images/logos/1.png" class="img-fluid" alt="" />
+      </a>
+      <!-- links -->
+      <ul
+        class="
+          nav-links
+          list-unstyled
+          d-lg-flex
+          align-items-center
+          justify-content-end
+          mb-0
+        "
+      >
+        <!-- nav item -->
+        <li class="th-nav-item position-relative">
+          <a
+            href="/"
+            class="
+              position-relative
+              d-flex
+              align-items-center
+              justify-content-lg-center justify-content-between
+              text-capitalize
+            "
+            >home</a
+          >
+        </li>
+
+        <!-- nav item has dropdown -->
+        <li class="th-nav-item has-dropdown position-relative">
+          <a
+            href="#"
+            onclick="return false;"
+            class="
+              position-relative
+              d-flex
+              align-items-center
+              justify-content-lg-center justify-content-between
+              text-capitalize
+            "
+            >classes</a
+          >
+          <!-- dropdown list -->
+          <ul class="th-dropdown-list list-unstyled mb-0">
+            <% grades.forEach((grade) => { %>
+              <li class="th-dropdown-item">
+                <a
+                  href="./pages/shared.html"
+                  class="
+                    position-relative
+                    d-flex
+                    align-items-center
+                    justify-content-between
+                    text-capitalize
+                  "
+                  >Grade <%= grade.name %></a>
+              </li>
+            <% }) %>
+            
+          </ul>
+        </li>
+
+        <!-- nav item -->
+        <li class="th-nav-item position-relative">
+          <a
+            href="./pages/about-us.html"
+            class="
+              position-relative
+              d-flex
+              align-items-center
+              justify-content-lg-center justify-content-between
+              text-capitalize
+            "
+            >about</a
+          >
+        </li>
+
+        <!-- nav item -->
+        <li class="th-nav-item position-relative">
+          <a
+            href="./pages/about-us.html"
+            class="
+              position-relative
+              d-flex
+              align-items-center
+              justify-content-lg-center justify-content-between
+              text-capitalize
+            "
+            >contact</a
+          >
+        </li>
+
+        <!-- nav item -->
+        <li class="th-nav-item position-relative">
+          <a
+            href="./pages/help.html"
+            class="
+              position-relative
+              d-flex
+              align-items-center
+              justify-content-lg-center justify-content-between
+              text-capitalize
+            "
+            >support</a
+          >
+        </li>
+
+        <!-- nav item -->
+        <li class="th-nav-item user-item position-relative">
+          <a
+            href="/admin"
+            class="
+              position-relative
+              d-flex
+              align-items-center
+              justify-content-lg-center justify-content-between
+              text-capitalize
+            "
+          >
+            <i class="fa fa-user-o mr-2 d-lg-inline-flex d-none"></i>
+            <span class="d-inline-flex text-capitalize">Admin</span>
+          </a>
+        </li>
+      </ul>
+      <!-- toggler -->
+      <button
+        class="nav-toggler position-relative d-lg-none d-block"
+        id="nav_toggler"
+      >
+        <span class="d-block w-100"></span>
+        <span class="d-block w-100"></span>
+        <span class="d-block w-100"></span>
+      </button>
+    </div>
+  </div>
+</nav>

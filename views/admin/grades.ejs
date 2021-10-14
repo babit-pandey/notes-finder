@@ -1,0 +1,328 @@
+<%- include('partials/header') %>
+
+<div class="page-heading">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-12 col-md-6 order-md-1 order-last">
+        <h3>Grades</h3>
+        <p class="text-subtitle text-muted">For managing all grades</p>
+      </div>
+      <div class="col-12 col-md-6 order-md-2 order-first">
+        <nav
+          aria-label="breadcrumb"
+          class="breadcrumb-header float-start float-lg-end"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Grades</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="row" id="table-head">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between flex-md-row flex-column"
+              >
+                <p class="text-sm-left text-center">
+                  Here are list of grades where you can edit, delete and create
+                  grades.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add-prompt"
+                >
+                  Add Grade
+                </button>
+              </div>
+              <div class="modal-primary me-1 mb-1 d-inline-block">
+                <div
+                  class="modal fade text-left"
+                  id="add-prompt"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="add-prompt"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="
+                      modal-dialog modal-dialog-centered modal-dialog-scrollable
+                    "
+                    role="document"
+                  >
+                    <div class="modal-content">
+                      <form action="/admin/add" method="post">
+                        <div class="modal-header bg-primary">
+                          <h5 class="modal-title white" id="add-prompt-label">
+                            Add Grade
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <i data-feather="x"></i>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>Name</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                placeholder="Grade Name"
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-light-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            <span>Close</span>
+                          </button>
+                          <button type="submit" class="btn btn-primary ml-1">
+                            <span>Add</span>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% if (grades.length === 0) { %>
+              <p class="text-center">No Grades found</p>
+              <% } %> <% if (grades.length > 0){ %>
+              <div class="table-responsive">
+                <table class="table mb-0">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th class="col-1">S.N.</th>
+                      <th>NAME</th>
+                      <th class="col-1">ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (index in grades) { %>
+                    <tr>
+                      <td><%= +index + 1 %></td>
+                      <td>Grade <%= grades[index].name %></td>
+                      <td class="text-bold-500 d-flex gap-1">
+                        <!-- <a
+                          href="#"
+                          class="
+                            btn btn-primary
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                          "
+                          ><i class="bi bi-pencil"></i
+                        ></a> -->
+
+                        <!-- Button trigger for danger theme modal -->
+                        <button
+                          type="button"
+                          class="
+                            btn btn-primary
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                          "
+                          data-bs-toggle="modal"
+                          data-bs-target="#edit-prompt-<%= index %>"
+                        >
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <div class="modal-primary me-1 mb-1 d-inline-block">
+                          <!--Danger theme Modal -->
+                          <div
+                            class="modal fade text-left"
+                            id="edit-prompt-<%= index %>"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="edit-prompt-<%= index %>"
+                            aria-hidden="true"
+                          >
+                            <div
+                              class="
+                                modal-dialog
+                                modal-dialog-centered
+                                modal-dialog-scrollable
+                              "
+                              role="document"
+                            >
+                              <div class="modal-content">
+                                <form action="/admin/update" method="post">
+                                  <div class="modal-header bg-primary">
+                                    <h5
+                                      class="modal-title white"
+                                      id="edit-prompt-label-<%= index %>"
+                                    >
+                                      Edit Grade <%= grades[index].name %>
+                                    </h5>
+                                    <button
+                                      type="button"
+                                      class="close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                    >
+                                      <i data-feather="x"></i>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                        <label>Name</label>
+                                      </div>
+                                      <div class="col-md-8 form-group">
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          name="name"
+                                          placeholder="Grade Name"
+                                          value="<%= grades[index].name %>"
+                                          required
+                                        />
+                                        <input
+                                          type="hidden"
+                                          name="id"
+                                          required
+                                          value="<%= grades[index]._id %>"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button
+                                      type="button"
+                                      class="btn btn-light-secondary"
+                                      data-bs-dismiss="modal"
+                                    >
+                                      <span>Close</span>
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      class="btn btn-primary ml-1"
+                                    >
+                                      <span>Save</span>
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Button trigger for danger theme modal -->
+                        <button
+                          type="button"
+                          class="
+                            btn btn-danger
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                          "
+                          data-bs-toggle="modal"
+                          data-bs-target="#delete-prompt-<%= index %>"
+                        >
+                          <i class="bi bi-trash"></i>
+                        </button>
+                        <div class="modal-danger me-1 mb-1 d-inline-block">
+                          <!--Danger theme Modal -->
+                          <div
+                            class="modal fade text-left"
+                            id="delete-prompt-<%= index %>"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="delete-prompt-<%= index %>"
+                            aria-hidden="true"
+                          >
+                            <div
+                              class="
+                                modal-dialog
+                                modal-dialog-centered
+                                modal-dialog-scrollable
+                              "
+                              role="document"
+                            >
+                              <div class="modal-content">
+                                <div class="modal-header bg-danger">
+                                  <h5
+                                    class="modal-title white"
+                                    id="delete-prompt-label-<%= index %>"
+                                  >
+                                    Delete Grade <%= grades[index].name %>
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  >
+                                    <i data-feather="x"></i>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Do you really want to delete Grade <%=
+                                  grades[index].name %>? There is no way to get
+                                  it back.
+                                </div>
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-light-secondary"
+                                    data-bs-dismiss="modal"
+                                  >
+                                    <span>No</span>
+                                  </button>
+                                  <form action="/admin/delete" method="post">
+                                    <input
+                                      type="hidden"
+                                      name="id"
+                                      value="<%= grades[index]._id %>"
+                                    />
+                                    <button
+                                      type="submit"
+                                      class="btn btn-danger ml-1"
+                                    >
+                                      <span>Delete</span>
+                                    </button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+              <% } %>
+            </div>
+            <!-- table head dark -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<%- include('partials/footer') %>
