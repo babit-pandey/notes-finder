@@ -8,4 +8,9 @@ const router = express.Router();
 // @access Public
 router.get("/", basicControllers.notes_index);
 
+// @route  GET /grades
+// @desc   Grades Page
+// @access Public
+router.get("/grades", basicControllers.grades);
+
 module.exports = router;
