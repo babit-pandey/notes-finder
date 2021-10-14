@@ -18,7 +18,7 @@ const delete_grades = (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.redirect('/admin/grades');
+      res.redirect("/admin/grades");
     }
   });
 };
@@ -48,13 +48,13 @@ const add_grades = (req, res) => {
     } else {
       res.redirect("/admin/grades");
     }
-  })
-}
+  });
+};
 
 module.exports = {
   admin_index,
   admin_grades,
   update_grades,
   delete_grades,
-  add_grades
+  add_grades,
 };
