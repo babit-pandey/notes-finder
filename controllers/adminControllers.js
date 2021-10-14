@@ -9,46 +9,46 @@ const admin_grades = async (req, res) => {
   res.render("admin/grades", { grades, pageName: "grades" });
 };
 
-const delete_grades = (req, res) => {
+const delete_grades = async (req, res) => {
   if (!req.body.id) {
     res.status(400).send("Bad request");
   }
 
-  Grade.findByIdAndDelete(req.body.id, (err) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.redirect("/admin/grades");
-    }
-  });
+  try {
+    await Grade.findByIdAndDelete(req.body.id);
+
+    res.redirect("/admin/grades");
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
-const update_grades = (req, res) => {
+const update_grades = async (req, res) => {
   if (!req.body.id && !req.body.name) {
     res.status(400).send("Bad request");
   }
 
-  Grade.findByIdAndUpdate(req.body.id, { name: req.body.name }, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.redirect("/admin/grades");
-    }
-  });
+  try {
+    await Grade.findByIdAndUpdate(req.body.id, { name: req.body.name });
+
+    res.redirect("/admin/grades");
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
-const add_grades = (req, res) => {
+const add_grades = async (req, res) => {
   if (!req.body.name) {
     res.status(400).send("Bad request");
   }
 
-  Grade.create({ name: req.body.name }, (err) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.redirect("/admin/grades");
-    }
-  });
+  try {
+    await Grade.create({ name: req.body.name });
+
+    res.redirect("/admin/grades");
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
 module.exports = {
