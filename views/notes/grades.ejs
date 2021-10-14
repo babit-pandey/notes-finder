@@ -1,0 +1,14 @@
+<%- include("../partials/header") %>
+
+<main>
+  <div class="container">
+    <h2>List of Grades</h2>
+    <ul>
+      <% grades.forEach(function(grade) { %>
+      <li><a href="/grades/<%= grade.name %> ">Grade <%= grade.name %></a></li>
+      <% }); %>
+    </ul>
+  </div>
+</main>
+
+<%- include("../partials/footer") %>

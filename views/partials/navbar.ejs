@@ -35,8 +35,7 @@
         <!-- nav item has dropdown -->
         <li class="th-nav-item has-dropdown position-relative">
           <a
-            href="#"
-            onclick="return false;"
+            href="/grades"
             class="
               position-relative
               d-flex
@@ -51,7 +50,7 @@
             <% grades.forEach((grade) => { %>
               <li class="th-dropdown-item">
                 <a
-                  href="./pages/shared.html"
+                  href="/grades/<%= grade.name %>"
                   class="
                     position-relative
                     d-flex
@@ -69,7 +68,7 @@
         <!-- nav item -->
         <li class="th-nav-item position-relative">
           <a
-            href="./pages/about-us.html"
+            href="/about"
             class="
               position-relative
               d-flex
@@ -84,7 +83,7 @@
         <!-- nav item -->
         <li class="th-nav-item position-relative">
           <a
-            href="./pages/about-us.html"
+            href="/contact"
             class="
               position-relative
               d-flex
@@ -99,7 +98,7 @@
         <!-- nav item -->
         <li class="th-nav-item position-relative">
           <a
-            href="./pages/help.html"
+            href="/support"
             class="
               position-relative
               d-flex
