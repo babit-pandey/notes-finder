@@ -1,7 +1,7 @@
 const express = require("express");
 const basicRoutes = require("./routes/basicRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-const connectDB = require("../MERN/devconnector/config/db");
+const connectDB = require("./config/db");
 
 const app = express();
 
