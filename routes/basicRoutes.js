@@ -13,4 +13,9 @@ router.get("/", basicControllers.notes_index);
 // @access Public
 router.get("/grades", basicControllers.grades);
 
+// @route  GET /grades/:name
+// @desc   Grades Page
+// @access Public
+router.get("/grades/:name", basicControllers.grade);
+
 module.exports = router;

@@ -10,7 +10,14 @@ const grades = async (req, res) => {
   res.render("notes/grades", { grades });
 };
 
+const grade = async (req, res) => {
+  const grades = await Grade.find({});
+  const grade = await Grade.findOne({ name: req.params.name });
+  res.render("notes/grade", { grades, grade });
+};
+
 module.exports = {
   notes_index,
-  grades
+  grades,
+  grade,
 };
