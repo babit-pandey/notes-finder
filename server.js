@@ -1,6 +1,4 @@
 const express = require("express");
-const basicRoutes = require("./routes/basicRoutes");
-const adminRoutes = require("./routes/adminRoutes");
 const connectDB = require("./config/db");
 
 const app = express();
@@ -8,15 +6,14 @@ const app = express();
 // Connect Database
 connectDB();
 
-app.use(express.urlencoded({ extended: false }));
-
-const port = process.env.PORT || 3000;
-
+// Middleware Functions View Engine
 app.set("view engine", "ejs");
-
-app.use("/", basicRoutes);
-app.use("/admin", adminRoutes);
-
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
+// Define Routes
+app.use("/", require("./routes/basicRoutes"));
+app.use("/admin", require("./routes/adminRoutes"));
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
