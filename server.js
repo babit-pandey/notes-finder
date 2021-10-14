@@ -1,29 +1,19 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const basicRoutes = require("./routes/basicRoutes");
-const adminRoutes = require("./routes/adminRoutes");
+const connectDB = require("./config/db");
 
 const app = express();
 
-mongoose
-  .connect("mongodb://localhost/notesfinder", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to Mongodb database"))
-  .catch((err) => console.log(err));
+// Connect Database
+connectDB();
 
-mongoose.set("useFindAndModify", false);
-
-app.use(express.urlencoded({ extended: false }));
-
-const port = process.env.PORT || 3000;
-
+// Middleware Functions View Engine
 app.set("view engine", "ejs");
-
-app.use("/", basicRoutes);
-app.use("/admin", adminRoutes);
-
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
+// Define Routes
+app.use("/", require("./routes/basicRoutes"));
+app.use("/admin", require("./routes/adminRoutes"));
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
