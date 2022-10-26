@@ -15,7 +15,7 @@ const delete_grades = async (req, res) => {
   }
 
   try {
-    await Grade.findByIdAndDelete(req.body.id);
+    await Grade.deleteOne({ _id: req.body.id });
 
     res.redirect("/admin/grades");
   } catch (err) {
@@ -29,7 +29,7 @@ const update_grades = async (req, res) => {
   }
 
   try {
-    await Grade.findByIdAndUpdate(req.body.id, { name: req.body.name });
+    await Grade.updateOne({ _id: req.body.id }, { name: req.body.name });
 
     res.redirect("/admin/grades");
   } catch (err) {
