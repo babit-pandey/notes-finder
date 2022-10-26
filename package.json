@@ -6,12 +6,12 @@
   "repository": "https://github.com/binamracode/notes-finder",
   "author": "Binamra Lamsal",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "start": "node server",
     "dev": "nodemon server"
   },
   "dependencies": {
-    "config": "^3.3.6",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongoose": "^5.13.5"
